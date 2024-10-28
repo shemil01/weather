@@ -6,19 +6,19 @@ import { CiCloudSun } from "react-icons/ci";
 import { FaSearch, FaTemperatureHigh, FaWind } from "react-icons/fa";
 import { FaNfcDirectional } from "react-icons/fa6";
 
-interface WeatherData{
-  location:{
+interface WeatherData {
+  location: {
     name: string;
     region: string;
   };
-  current:{
+  current: {
     temp_c: number;
     wind_kph: number;
     wind_dir: string;
     condition: {
       text: string;
     };
-  }
+  };
 }
 
 export default function WeatherForm() {
@@ -32,14 +32,18 @@ export default function WeatherForm() {
       setWeather(data);
       setError("");
       console.log("data:", data);
-    } catch (error: any) {
-      setError(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("An unknown error occurred");
+      }
       setWeather(null);
     }
   };
 
   return (
-    <div className="moving-bg min-h-screen flex flex-col items-center pt-10">
+    <div className="moving-bg min-h-screen  pt-10">
       {/* App Header */}
       <div className="flex items-center space-x-3 mb-5">
         <CiCloudSun className="text-white text-4xl" />
@@ -74,7 +78,7 @@ export default function WeatherForm() {
             <span>{weather.location.name}</span>
           </div>
           <div className=" space-y-2">
-            <p className="text-2xl font-bold "> current condition</p>
+            <p className="text-2xl font-bold">current condition</p>
             <div className="flex items-center justify-center space-x-2">
               <FaTemperatureHigh className="text-2xl" />
               <p className="text-lg">temp: {weather.current.temp_c}°C</p>
@@ -85,10 +89,10 @@ export default function WeatherForm() {
             </div>
             <div className="flex items-center justify-center space-x-2">
               <FaNfcDirectional className="text-2xl" />
-              <p className="text-lg">wind direction: {weather.current.wind_dir} </p>
+              <p className="text-lg">wind direction: {weather.current.wind_dir}</p>
             </div>
           </div>
-          <p className="mt-2">condition :{weather.current.condition.text}</p>
+          <p className="mt-2">condition: {weather.current.condition.text}</p>
         </div>
       )}
     </div>
