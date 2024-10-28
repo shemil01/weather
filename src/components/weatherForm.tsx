@@ -6,10 +6,25 @@ import { CiCloudSun } from "react-icons/ci";
 import { FaSearch, FaTemperatureHigh, FaWind } from "react-icons/fa";
 import { FaNfcDirectional } from "react-icons/fa6";
 
+interface WeatherData{
+  location:{
+    name: string;
+    region: string;
+  };
+  current:{
+    temp_c: number;
+    wind_kph: number;
+    wind_dir: string;
+    condition: {
+      text: string;
+    };
+  }
+}
+
 export default function WeatherForm() {
-  const [city, setCity] = useState("");
-  const [weather, setWeather] = useState<any>(null);
-  const [error, setError] = useState("");
+  const [city, setCity] = useState<string>("");
+  const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [error, setError] = useState<string>("");
 
   const handleFetchWeather = async () => {
     try {
@@ -28,7 +43,7 @@ export default function WeatherForm() {
       {/* App Header */}
       <div className="flex items-center space-x-3 mb-5">
         <CiCloudSun className="text-white text-4xl" />
-        <h1 className="font-bold text-white text-2xl">Weather App</h1>
+        <h1 className="font-bold text-white text-2xl">AccuWeather</h1>
       </div>
 
       {/* Input and Search Button */}
