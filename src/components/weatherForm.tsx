@@ -25,8 +25,8 @@ interface WeatherData {
     forecastday: Array<{
       date: string;
       day: {
-        maxtemp_c: number; // Add this line
-        mintemp_c: number; // Add this line
+        maxtemp_c: number; 
+        mintemp_c: number; 
       };
       hour: Array<{
         time: string;
@@ -39,7 +39,6 @@ interface WeatherData {
     }>;
   };
 }
-
 
 export default function WeatherForm() {
   const [city, setCity] = useState<string>("");
@@ -128,16 +127,16 @@ export default function WeatherForm() {
           </div>
 
           {/* Hourly Forecast */}
-          <div className="mt-10 text-white space-x-3">
+          <div className="mt-10 text-white">
             <h2 className="text-xl font-bold">Hourly Forecast</h2>
-            <div className="space-y-2 flex justify-center">
+            <div className="flex overflow-x-auto space-x-3 md:space-x-10 md:justify-center mt-2">
               {weather.forecast.forecastday[0].hour
                 .filter((hour) => new Date(hour.time) >= new Date()) // Filter for current and upcoming hours
                 .slice(0, 7) // Display the next 7 hours including the current hour
                 .map((hour, index) => (
                   <div
                     key={index}
-                    className="flex flex-col items-center text-lg space-x-24"
+                    className="flex flex-col items-center  text-lg whitespace-nowrap"
                   >
                     {/* Extracting only time part from 'hour.time' */}
                     <p>
@@ -149,11 +148,11 @@ export default function WeatherForm() {
 
                     {/* Displaying weather icon */}
                     <Image  
-  src={`https:${hour.condition.icon}`} // Ensure the URL is complete
-  alt={hour.condition.text}
-  width={48} // Replace with your desired width
-  height={48} // Replace with your desired height
-/>
+                      src={`https:${hour.condition.icon}`} // Ensure the URL is complete
+                      alt={hour.condition.text}
+                      width={48} // Replace with your desired width
+                      height={48} // Replace with your desired height
+                    />
                     <p>{hour.temp_c}°C</p>
                     <p>{hour.condition.text}</p>
                   </div>
