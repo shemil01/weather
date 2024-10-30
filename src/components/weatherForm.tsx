@@ -143,11 +143,11 @@ export default function WeatherForm() {
                     </p>
 
                     {/* Displaying weather icon */}
-                    <Image
-  src={`https:${hour.condition.icon}`} // Use absolute URL
+                    <Image  
+  src={`https:${hour.condition.icon}`} // Ensure the URL is complete
   alt={hour.condition.text}
-  width={64} // Adjust width as needed
-  height={64} // Adjust height as needed
+  width={48} // Replace with your desired width
+  height={48} // Replace with your desired height
 />
                     <p>{hour.temp_c}°C</p>
                     <p>{hour.condition.text}</p>
