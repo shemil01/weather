@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['//cdn.weatherapi.com/weather'], // Replace this with your actual image domain
-      },
-};
-
-export default nextConfig;
+      domains: ['cdn.weatherapi.com'], // Allow images from this domain
+    },
+  };
+  
+  export default nextConfig;
+  
