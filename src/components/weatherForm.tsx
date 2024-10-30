@@ -1,6 +1,7 @@
 "use client";
 
 import { fetchWeather } from "@/utils/fetchWeather";
+import Image from "next/image";
 import { useState } from "react";
 import { CiCloudSun } from "react-icons/ci";
 import { FaSearch, FaTemperatureHigh, FaWind } from "react-icons/fa";
@@ -88,38 +89,38 @@ export default function WeatherForm() {
       {weather && (
         <div className="text-white mt-5 text-center">
           <div>
-  <div className="mb-3 text-lg space-x-1">
-    <span>{weather.location.region},</span>
-    <span>{weather.location.name}</span>
-  </div>
-  <div className="space-y-2">
-    <p className="text-2xl font-bold">Current Condition</p>
-    <div className="flex items-center justify-center space-x-2">
-      <FaTemperatureHigh className="text-2xl" />
-      <p className="text-lg">Temp: {weather.current.temp_c}°C</p>
-    </div>
+            <div className="mb-3 text-lg space-x-1">
+              <span>{weather.location.region},</span>
+              <span>{weather.location.name}</span>
+            </div>
+            <div className="space-y-2">
+              <p className="text-2xl font-bold">Current Condition</p>
+              <div className="flex items-center justify-center space-x-2">
+                <FaTemperatureHigh className="text-2xl" />
+                <p className="text-lg">Temp: {weather.current.temp_c}°C</p>
+              </div>
 
-    {/* High and Low Temperatures */}
-    <div className="flex items-center justify-center space-x-2">
-      <p className="text-lg">
-        High: {weather.forecast.forecastday[0].day.maxtemp_c}°C | Low: {weather.forecast.forecastday[0].day.mintemp_c}°C
-      </p>
-    </div>
+              {/* High and Low Temperatures */}
+              <div className="flex items-center justify-center space-x-2">
+                <p className="text-lg">
+                  High: {weather.forecast.forecastday[0].day.maxtemp_c}°C | Low:{" "}
+                  {weather.forecast.forecastday[0].day.mintemp_c}°C
+                </p>
+              </div>
 
-    <div className="flex items-center justify-center space-x-2">
-      <FaWind className="text-2xl" />
-      <p className="text-lg">Wind: {weather.current.wind_kph} km/h</p>
-    </div>
-    <div className="flex items-center justify-center space-x-2">
-      <FaNfcDirectional className="text-2xl" />
-      <p className="text-lg">
-        Wind Direction: {weather.current.wind_dir}
-      </p>
-    </div>
-  </div>
-  <p className="mt-2">Condition: {weather.current.condition.text}</p>
-</div>
-
+              <div className="flex items-center justify-center space-x-2">
+                <FaWind className="text-2xl" />
+                <p className="text-lg">Wind: {weather.current.wind_kph} km/h</p>
+              </div>
+              <div className="flex items-center justify-center space-x-2">
+                <FaNfcDirectional className="text-2xl" />
+                <p className="text-lg">
+                  Wind Direction: {weather.current.wind_dir}
+                </p>
+              </div>
+            </div>
+            <p className="mt-2">Condition: {weather.current.condition.text}</p>
+          </div>
 
           {/* Hourly Forecast */}
           <div className="mt-10 text-white space-x-3">
@@ -142,10 +143,11 @@ export default function WeatherForm() {
                     </p>
 
                     {/* Displaying weather icon */}
-                    <img
+                    <Image  
                       src={hour.condition.icon}
                       alt={hour.condition.text}
-                      className="w-12 h-12"
+                      width={48} // Replace with your desired width
+                      height={48} // Replace with your desired height
                     />
 
                     <p>{hour.temp_c}°C</p>
