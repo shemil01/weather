@@ -39,4 +39,6 @@ body {
   background-image: url('/weather.jpg'); /* Path to your cloud image */
   background-repeat: repeat-x; /* Repeat horizontally */
   background-size: cover; /* Cover the entire area */
+
+  
 }
