@@ -24,6 +24,10 @@ interface WeatherData {
   forecast: {
     forecastday: Array<{
       date: string;
+      day: {
+        maxtemp_c: number; // Add this line
+        mintemp_c: number; // Add this line
+      };
       hour: Array<{
         time: string;
         temp_c: number;
@@ -35,6 +39,7 @@ interface WeatherData {
     }>;
   };
 }
+
 
 export default function WeatherForm() {
   const [city, setCity] = useState<string>("");
