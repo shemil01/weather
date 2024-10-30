@@ -4,6 +4,7 @@ export async function fetchWeather(city:string){
     if (!apiKey) throw new Error("API key is missing");
 
     const response = await fetch(`${apiUrl}?key=${apiKey}&q=${city}`);
+    console.log('res',response)
     if (!response.ok) throw new Error("Failed to fetch weather data");
 
     return response.json();
